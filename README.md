@@ -36,9 +36,9 @@
 
 <br>
 
-### 1. let, const and block scoping
+### 1. let, const 和 block scoping
 
-`let` allows you to create declarations which are bound to any block, called block scoping. Instead of using `var`, which provides function scope, it is recommended to use `let` in ES6.
+`let` 可以讓你宣告被限制在block範圍內的變數，稱之為 block scoping。 比起使用僅有的function scope的 `var`，在ES6推薦使用`let`。
 
 ```javascript
 var a = 2;
@@ -50,7 +50,7 @@ var a = 2;
 console.log(a); // 2
 ```
 
-Another form of block-scoped declaration is the `const`, which creates constants. In ES6, a `const` represents a constant reference to a value. In other words, the value is not frozen, just the assignment of it. Here's a simple example:
+另外一種block-scoped的宣告方式是`const`，用來創造常量變數(constants)。 在ES6中，`const`是對於一個值(value)的常數參照(constant reference)。 換句話說，被指向的值本身並不是常數。 以下是簡單的示例：
 
 ```javascript
 {
@@ -66,12 +66,12 @@ Another form of block-scoped declaration is the `const`, which creates constants
 }
 ```
 
-A few things to keep in mind:
+幾件事需要注意：
 
-* Hoisting of `let` and `const` vary from the traditional hoisting of variables and functions. Both `let` and `const` are hoisted, but cannot be accessed before their declaration, because of [Temporal Dead Zone](http://jsrocks.org/2015/01/temporal-dead-zone-tdz-demystified/) 
-* `let` and `const` are scoped to the nearest enclosing block.
-* When using `const`, use CAPITAL_CASING (this is a common convention).
-* `const` has to be defined with its declaration.
+* `let` and `const`的hoisting [變數拉升](https://blog.json.tw/javascript-variable-hoisting) 與傳統的variables和functions的hoisting不同。 `let` 和 `const`兩者皆會被拉升(hoist)，但在宣告處之前是不能存取的，理由是因為 [Temporal Dead Zone](http://jsrocks.org/2015/01/temporal-dead-zone-tdz-demystified/) (英文)。
+* `let` 和 `const` 的有效範圍被限制在最接近的作用域(enclosing block)內。
+* 使用 `const`時，用全大寫字母(ex: CAPITAL_CASING)，以符合習慣用法。
+* `const` 在宣告時就需要為其定義數值。
 
 <br>
 
