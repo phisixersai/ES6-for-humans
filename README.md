@@ -68,7 +68,7 @@ console.log(a); // 2
 
 幾件事需要注意：
 
-* `let` and `const`的hoisting [變數拉升](https://blog.json.tw/javascript-variable-hoisting) 與傳統的variables和functions的hoisting不同。 `let` 和 `const`兩者皆會被拉升(hoist)，但在宣告處之前是不能存取的，理由是因為 [Temporal Dead Zone](http://jsrocks.org/2015/01/temporal-dead-zone-tdz-demystified/) (英文)。
+* `let` and `const`的hoisting [變數拉升](https://blog.json.tw/javascript-variable-hoisting)(正體中文)與傳統的variables和functions的hoisting不同。 `let` 和 `const`兩者皆會被拉升(hoist)，但在宣告處之前是不能存取的，理由是因為 [Temporal Dead Zone](http://jsrocks.org/2015/01/temporal-dead-zone-tdz-demystified/) (英文)。
 * `let` 和 `const` 的有效範圍被限制在最接近的作用域(enclosing block)內。
 * 使用 `const`時，用全大寫字母(ex: CAPITAL_CASING)，以符合習慣用法。
 * `const` 在宣告時就需要為其定義數值。
@@ -77,20 +77,20 @@ console.log(a); // 2
 
 ### 2. Arrow Functions
 
-Arrow functions are a short-hand notation for writing functions in ES6. The arrow function definition consists of a parameter list `( ... )`, followed by the `=>` marker and a function body.
+Arrow functions在ES6中是用一種簡潔的函式寫法。一個arrow function的定義包含參數列表 `( ... )`，其後接著 `=>` 符號與函式本體。
 
 ```javascript
-// Classical Function Expression
+// 傳統函式寫法
 let addition = function(a, b) {
     return a + b;
 };
 
-// Implementation with arrow function
+// 以arrow function實現
 let addition = (a, b) => a + b;
 ```
-Note that in the above example, the `addition` arrow function is implemented with "concise body" which does not need an explicit return statement.
+上述的示例中， `addition` 這個arrow function以"concise body"實現，所以不需要明確的寫出返回(return)敘述。
 
-Here is an example with the usual "block body"
+以下是"block body"的示例：
 
 ```javascript
 let arr = ['apple', 'banana', 'orange'];
@@ -102,28 +102,28 @@ let breakfast = arr.map(fruit => {
 console.log(breakfast); // ['apples', 'bananas', 'oranges']
 ```
 
-**Behold! There is more...**
+**注意！還有更多...**
 
-Arrow functions don't just make the code shorter. They are closely related to `this` binding behavior.
+Arrow functions不僅只縮短程式碼長度而已，更與 `this`的綁定行為(binding behavior)息息相關。
 
-Arrow functions behavior with `this` keyword varies from that of normal functions. Each function in JavaScript defines its own `this` context but arrow functions capture the `this` value of the nearest enclosing context. Check out the following code:
+Arrow functions 中 `this` 的行為表現與我們所熟悉的一般函式不同。 JavaScript中每個函式都有其自定義的 `this` 脈絡，但arrow functions的 `this`是最其最近的作用域脈絡(nearest enclosing context)。 以下為示例：
 
 ```javascript
 function Person() {
-    // The Person() constructor defines `this` as an instance of itself.
+    // Person() 建構式(constructor) 定義的 `this` 為其自身。
     this.age = 0;
 
     setInterval(function growUp() {
-        // In non-strict mode, the growUp() function defines `this`
-        // as the global object, which is different from the `this`
-        // defined by the Person() constructor.
+        // 在 non-strict 模式下，growUp() 函式
+        // 定義 `this`為全域物件(global object)
+        // 與Person()建構式中的 `this` 不同。
         this.age++;
     }, 1000);
 }
 var p = new Person();
 ```
 
-In ECMAScript 3/5, this issue was fixed by assigning the value in `this` to a variable that could be closed over.
+在ECMAScript 3/5中，解決此問題的方法是事先將 `this` 賦值給可以讓匿名函式也能存取到的變數。
 
 ```javascript
 function Person() {
@@ -131,14 +131,13 @@ function Person() {
     self.age = 0;
 
     setInterval(function growUp() {
-        // The callback refers to the `self` variable of which
-        // the value is the expected object.
+        // 回呼函式(callback)中的 `self` 變數正是我們所要的物件。
         self.age++;
     }, 1000);
 }
 ```
 
-As mentioned above, arrow functions capture the this value of the nearest enclosing context, so the following code works as expected, even with nested arrow functions.
+如上所說，arrow functions的`this`值是最近的作用域脈絡(nearest enclosing context)，所以以下的程式碼會如我們所期望的運行，即使是巢狀(nested) 的arrow functions。
 
 ```javascript
 function Person() {
@@ -146,20 +145,20 @@ function Person() {
 
     setInterval(() => {
         setTimeout(() => {
-            this.age++; // `this` properly refers to the person object
+            this.age++; // `this`指向Person物件
         }, 1000);
     }, 1000);
 }
 
 var p = new Person();
 ```
-[Read more about 'Lexical this' in arrow functions here](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Functions/Arrow_functions#Lexical_this)
+[讀更多有關arrow functions的'Lexical this'](https://developer.mozilla.org/zh-TW/docs/Web/JavaScript/Reference/Functions/Arrow_functions)(正體中文)
 
 <br>
 
 ### 3. Default Function Parameters
 
-ES6 allows you to set default parameters in function definitions. Here is a simple illustration.
+ES6可以讓你在函式定義中，設置預設參數，以下為簡單說明：
 
 ```javascript
 let getFinalPrice = (price, tax = 0.7) => price + price * tax;
