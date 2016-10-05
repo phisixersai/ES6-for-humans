@@ -169,9 +169,9 @@ getFinalPrice(500); // 850
 
 ### 4. Spread / Rest Operator
 
-`...` operator is referred to as spread or rest operator, depending on how and where it is used.
+`...` 運算子可以是spread或rest運算子，端看如何被使用。
 
-When used with any iterable, it acts as to "spread" it into individual elements:
+與任何可迭代(iterable)物件一起使用時，行為像是將其散布(spread)至各個元素：
 
 ```javascript
 function foo(x, y, z) {
@@ -182,7 +182,7 @@ let arr = [1, 2, 3];
 foo(...arr); // 1 2 3
 ```
 
-The other common usage of `...` is gathering a set of values together into an array. This is referred as "rest" operator.
+另一個常見用法是用 `...` 將整組數值收集至一個陣列內。 被稱為"rest"運算子。
 
 ```javascript
 function foo(...args) {
